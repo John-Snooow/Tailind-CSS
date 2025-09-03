@@ -7,15 +7,34 @@ import { AuthRoutes } from "./AuthRoutes";
 import { ManagerRoutes } from "./ManagerRoutes";
 import { EmployeeRoutes } from "./EmployeeRoutes";
 
-const isLoading = false; // Simulação de carregamento se eu colocar true, aparece o loading
+const isLoading = false; // Simulação de carregamento se eu colocar true
+
+const session = {
+  user: {
+    role: "employee", 
+  }
+}
 
 export function Routes() {
+  function Route(){
+    switch (session.user.role) {
+      case "employee":
+        return <EmployeeRoutes />;
+        
+        case "manager":
+        return <ManagerRoutes />;
+    
+      default:
+        return <AuthRoutes />;
+    }
+  }
+
   if (isLoading) {
     return <Loading />;
   }
   return (
     <BrowserRouter>
-      <AuthRoutes />
+      <Route />
     </BrowserRouter>
   );
 }
