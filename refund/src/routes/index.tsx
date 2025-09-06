@@ -11,7 +11,7 @@ const isLoading = false; // Simulação de carregamento se eu colocar true
 
 const session = {
   user: {
-    role: "employee", 
+    role: "", 
   }
 }
 
