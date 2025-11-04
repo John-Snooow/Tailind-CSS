@@ -8,20 +8,14 @@ import { AuthRoutes } from "./AuthRoutes";
 import { ManagerRoutes } from "./ManagerRoutes";
 import { EmployeeRoutes } from "./EmployeeRoutes";
 
-const isLoading = false; // Simulação de carregamento se eu colocar true
-
-const session = {
-  user: {
-    role: "", 
-  }
-}
+const isLoading = false;
 
 export function Routes() {
-  const context = useAuth()
-  console.log(context)
+  const { session } = useAuth()
+
 
   function Route(){
-    switch (session.user.role) {
+    switch (session?.user.role) {
       case "employee":
         return <EmployeeRoutes />;
         
