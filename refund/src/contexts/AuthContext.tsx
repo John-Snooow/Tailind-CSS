@@ -5,6 +5,7 @@ type AuthContext = {
     isLoading: boolean
     session: null | UserAPIResponse
     save: ( data: UserAPIResponse) => void
+    remove: () => void
 }
 
 const LOCAL_STORAGE_KEY = "@refund"
@@ -17,10 +18,17 @@ export function AuthProvider( {children}:{children: React.ReactNode}) {
     const [isLoading, setIsLoading] = useState (true)
 
     function save (data: UserAPIResponse) {
-        localStorage.setItem(`${LOCAL_STORAGE_KEY}:user`, JSON.stringify(data))
+        localStorage.setItem(`${LOCAL_STORAGE_KEY}:user`, JSON.stringify(data.user))
         localStorage.setItem(`${LOCAL_STORAGE_KEY}:token`, data.token)
 
         setSession(data)
+    }
+
+    function remove () {
+        localStorage.removeItem(`${LOCAL_STORAGE_KEY}:user`)
+        localStorage.removeItem(`${LOCAL_STORAGE_KEY}:token`)
+
+        window.location.assign("/")
     }
 
     function loadUser () {
@@ -41,7 +49,7 @@ export function AuthProvider( {children}:{children: React.ReactNode}) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{session, save, isLoading}}>
+        <AuthContext.Provider value={{session, save, isLoading, remove}}>
             {children}
         </AuthContext.Provider>
     )
