@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { set, z, ZodError } from "zod";
+import { z, ZodError } from "zod";
 import { AxiosError } from "axios";
 
 import { api } from "../services/api";
