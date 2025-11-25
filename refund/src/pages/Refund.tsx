@@ -90,7 +90,7 @@ export function Refund() {
       setCategory(data.category);
       setAmount(formatCurrency(data.amount));
       steFileURL(data.filename);
-      
+
     }catch(error){
       console.log(error);
       if (error instanceof AxiosError) {
@@ -154,7 +154,7 @@ export function Refund() {
 
       { params.id && fileURL ? (
         <a
-          href="https://www.rocketseat.com.br"
+          href={`http://localhost:3333/uploads/${fileURL}`}
           target="_blank"
           className="text-sm text-green-100 font-semibold flex items-center justify-center gap-2 my-6 hover:opacity-70 ease-linear"
         >
